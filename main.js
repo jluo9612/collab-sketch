@@ -78,8 +78,22 @@ function test() {
   console.log("ALERT");
 }
 
+function expandCanvas() {
+  resizeCanvas(2000, 2000);
+  console.log("expand canvas to 2000x2000");
+}
+
+function sure() {
+  if(confirm("Are you sure that you want to delete this drawing???") == true) {
+    clearDrawing();
+  }
+  else{
+    alert("Thank you!");
+  }
+}
+
 $("#saveDrawing").on("click", saveDrawing);
 
-$("#clearDrawing").on("click", clearDrawing);
+$("#clearDrawing").on("click", sure);
 
-$("#test").on("click", test);
+$("#expandCanvas").on("click", expandCanvas);
