@@ -63,15 +63,23 @@ function drawPoint() {
   pointsData.push({x: mouseX, y: mouseY});
 }
 
-$("#saveDrawing").on("click", saveDrawing);
-
 function saveDrawing() {
   saveCanvas();
+  console.log("saving drawing");
 }
-
-$("#clearDrawing").on("click", clearDrawing);
 
 function clearDrawing() {
   pointsData.remove();
   points = [];
+  console.log("clearing drawing");
 }
+
+function test() {
+  console.log("ALERT");
+}
+
+$("#saveDrawing").on("click", saveDrawing);
+
+$("#clearDrawing").on("click", clearDrawing);
+
+$("#test").on("click", test);
