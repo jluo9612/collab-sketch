@@ -39,6 +39,7 @@ function setup() {
      }
     }
     canvas.mousePressed(drawPointIfMousePressed);
+    canvas.mouseMoved(drawPointIfMousePressed);
 }
 
 /* The point function created as an argument does not have a name, and is not stored anywhere. 
