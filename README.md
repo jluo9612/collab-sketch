@@ -8,3 +8,4 @@
   <li>Establish public and/or personal galleries</li>
 </ol>
 </p>
+<a href="https://preview.c9users.io/jl9612/collab_sketch/index.html">Open CollabSketch Canvas</a>
