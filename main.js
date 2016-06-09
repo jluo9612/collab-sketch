@@ -45,7 +45,7 @@ function setup() {
         drawTouch();
       }
     }
-    canvas.touchPressed(drawPointIfTouchPressed);
+    canvas.touchStarted(drawPointIfTouchPressed);
     canvas.touchMoved(drawPointIfTouchPressed);
     canvas.mousePressed(drawPointIfMousePressed);
     canvas.mouseMoved(drawPointIfMousePressed);
@@ -85,10 +85,6 @@ function clearDrawing() {
   pointsData.remove();
   points = [];
   console.log("clearing drawing");
-}
-
-function test() {
-  console.log("ALERT");
 }
 
 function expandCanvas() {
