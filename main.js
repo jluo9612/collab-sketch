@@ -33,11 +33,20 @@ function setup() {
     pointsData.on("child_added", function (addPointToPointsArray) {
      points.push(addPointToPointsArray.val());
     });
+    
     function drawPointIfMousePressed() {
      if (mouseIsPressed) {
        drawPoint();
      }
     }
+    
+    function drawPointIfTouchPressed() {
+      if (touchIsPressed) {
+        drawTouch();
+      }
+    }
+    canvas.touchPressed(drawPointIfTouchPressed);
+    canvas.touchMoved(drawPointIfTouchPressed);
     canvas.mousePressed(drawPointIfMousePressed);
     canvas.mouseMoved(drawPointIfMousePressed);
 }
@@ -63,6 +72,10 @@ function drawPoint() {
   pointsData.push({x: mouseX, y: mouseY});
 }
 
+function drawTouch() {
+  pointsData.push({x: touchX, y: touchY});
+}
+
 function saveDrawing() {
   saveCanvas();
   console.log("saving drawing");
@@ -84,7 +97,7 @@ function expandCanvas() {
 }
 
 function sure() {
-  if(confirm("Are you sure that you want to delete this drawing???") == true) {
+  if(confirm("Are you sure that you want to delete this drawing?") == true) {
     clearDrawing();
   }
   else{
