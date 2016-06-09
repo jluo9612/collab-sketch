@@ -77,7 +77,7 @@ function drawTouch() {
 }
 
 function saveDrawing() {
-  saveCanvas();
+  saveCanvas("cscanvas", "png");
   console.log("saving drawing");
 }
 
