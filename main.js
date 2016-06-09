@@ -41,7 +41,7 @@ function setup() {
     }
     
     function drawPointIfTouchPressed() {
-      if (touchIsPressed) {
+     if (touchIsDown) {
         drawTouch();
       }
     }
