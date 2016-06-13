@@ -2,21 +2,50 @@
 <html>
   <head>
     <title>CollabSketch!</title>
+    <link href="main.css" rel="stylesheet">
   </head>
+  
   <body>
+    <h1>Collaborative Sketchpad - Draw with friends!</h1>
+    
+    <!-- Button Controls -->
     <div id="controls" class="wrapper">
      <button id="saveDrawing" class="button">Save to Computer</button>
      <button id="clearDrawing" class="button">DELETE DRAWING</button>
      <button id="expandCanvas" class="button">Enlarge Canvas</button>
     </div>
     
-    <div class="wrapper">
-      <button class="button">test button</button>
+    <!-- Color and Paintbrush Controls -->
+    <div>
+      Color: <input class="toolbarElement color {pickerPosition:'top', pickerInsetColor:'#777 #777 #777 #777', pickerBorderColor:'#777 #777 #777 #777', pickerFaceColor:'#eee'}" id="ColorPicker" value="000000" />
+      Paintbrush Width: <span class="toolbarElement" id="controlContainer"></span>
     </div>
     
+    <!--<div class="wrapper">-->
+    <!--  <button class="button">test button</button>-->
+    <!--</div>-->
+    
+    <!-- getting firebase -->
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    
+    <!--p5 libraries/addons:dom, p5-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.23/p5.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
-    <script src="main.js"></script>
+    <script src="addons/p5.dom.js"></script>
+    <script src="p5.js"></script>
+    
+    <!-- get jscolor-->
+    <div>
+    <script type="text/javascript" src="jscolor/jscolor.js"></script>
+    </div>
+    
+    <!-- processing.js -->
+    <script src="processing.js"></script>
+    
+    <!-- main.js -->
+    <div>
+    <script language="javascript" src="main.js"></script>
+    </div>
+    
   </body>
 </html>
