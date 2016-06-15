@@ -1,4 +1,7 @@
 var slider;
+var mouseWasPressed;
+var point1;
+var point2;
 
  // Initialize Firebase
 var config = {
@@ -10,27 +13,23 @@ var config = {
   firebase.initializeApp(config);
  
 // pointsData variable(database)
-  var lineData = firebase.database().ref();
+  var linePointsData = firebase.database().ref();
+  console.log(linePointsData);
 
 // stores points drawn to canvas
-  var lines = [];
+  var pointsPairs = [];
+  console.log(pointsPairs);
 
 function setup() {
-
     var canvas = createCanvas(1000,1000);
     background(255);
     fill(0);
     strokeWeight(0);
     
     slider = createSlider(1, 50, 10);
-    
-// gets data from Firebase and stores it into points variable in app.
-/* The point function created as an argument does not have a name, and is not stored anywhere. 
-It exists only to be passed as an argument to .on(). 
-This is called an anonymous function.
-It would be equivalent if we had declared a function, perhaps named addPointToPointsArray, and then passed that in as our argument to .on(). */
-    lineData.on("child_added", function (addPointToLinesArray) {
-     lines.push(addPointToLinesArray.val());
+
+    linePointsData.on("child_added", function (addPointTopointsPairsArray) {
+        pointsPairs.push(addPointTopointsPairsArray.val());
     });
     
     // function touchStarted() {
@@ -58,23 +57,19 @@ It would be equivalent if we had declared a function, perhaps named addPointToPo
 
 // looping through the points variable which stores 
 function draw() {
-  background(255);
+  background(255, 204, 0);
   
   var colorPicker = document.getElementById("ColorPicker");
   
   // draw lines at points on canvas
-  // for (var i = 0; i < lines.length; i++) {
-  //   var point = lines[i];
-  //   ellipse(point.x, point.y, 5, 5);
-  //   console.log("drawing");
-  // }
   
   function drawIfTouchPressed() {
   // if (touchIsDown && touches.length == 1) {
   //     $('body').bind('touchmove', function(e){e.preventDefault()})
   //     drawTouch();
   //   }
-    if(touchIsDown && touches.length == 1) {
+  
+    if(touchIsDown) {
       stroke(slider.value());
       stroke(
         colorPicker.color.rgb[0]*255, 
@@ -82,14 +77,17 @@ function draw() {
         colorPicker.color.rgb[2]*255
               );
       strokeCap(ROUND);
-      lineData.push(line(ptouchX, ptouchY, touchX, touchY));
+      console.log("error");
+      linePointsData.push([ptouchX, ptouchY, touchX, touchY]);
     }
     lastMouseX = mouseX;
     lastMouseY = mouseY;
+    
+    return false;
   }
 
   function drawIfMousePressed() {
-     if(mouseIsPressed) {
+     if(mouseIsPressed == true && mouseWasPressed == false) {
         stroke(slider.value());
         stroke(
           colorPicker.color.rgb[0]*255, 
@@ -97,25 +95,50 @@ function draw() {
           colorPicker.color.rgb[2]*255
                 );
         strokeCap(ROUND);
-        lineData.push(line(pmouseX, pmouseY, mouseX, mouseY));
+        point1 = [mouseX, mouseY];
+        console.log("firstpoint");
+      } else if(mouseIsPressed == false && mouseWasPressed == true) {
+        point2 = [mouseX, mouseY];
+        var pair = point1.concat(point2);
+        linePointsData.push(pair);
+        console.log("pushing");
       } else {
         cursor(CROSS);
       }
+      
   }
     
   drawIfMousePressed();
   drawIfTouchPressed();
+  
+  for (var i = 0; i < pointsPairs.length; i++) {
+    var point = pointsPairs[i];
+    console.log(point[0], point[1], point[2], point[3]);
+    line(point[0], point[1], point[2], point[3]);
+    line(0, 50, 200, 50);
+    // stroke(20);
+    // stroke(
+    //   colorPicker.color.rgb[0]*255, 
+    //   colorPicker.color.rgb[1]*255, 
+    //   colorPicker.color.rgb[2]*255
+    //         );
+    // strokeCap(ROUND);
+  }
+
+mouseWasPressed = mouseIsPressed;
+
+console.log("drawing");
 
 }
 
-// stores points drawing state to firebase
-// function drawPoint() {
-//   pointsData.push({x: mouseX, y: mouseY});
-// }
 
-// function drawTouch() {
-//   pointsData.push({x: touchX, y: touchY});
-// }
+function drawPoint() {
+  linePointsData.push({x: mouseX, y: mouseY});
+}
+
+function drawTouch() {
+  linePointsData.push({x: touchX, y: touchY});
+}
 
 function saveDrawing() {
   saveCanvas("cscanvas", "png");
@@ -123,9 +146,9 @@ function saveDrawing() {
 }
 
 function clearDrawing() {
-  lineData.remove();
+  linePointsData.remove();
   clear();
-  lines = [];
+  pointsPairs = [];
   console.log("clearing drawing");
 }
 
