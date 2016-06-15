@@ -9,6 +9,9 @@
 /*global canvas*/
 /*global mouseIsPressed*/
 
+
+var mouseWasPressed;
+
  // Initialize Firebase
   var config = {
     apiKey: "AIzaSyCol-DAT7l2ukTQyLuZUfzATzgsRvbznmU",
@@ -60,11 +63,23 @@ It would be equivalent if we had declared a function, perhaps named addPointToPo
 function draw() {
   background(255);
   
+  
   // draw ellipses at points on canvas
-  for (var i = 0; i < points.length; i++) {
-    var point = points[i];
-    ellipse(point.x, point.y, 5, 5);
+  if(mouseWasPressed == false && mouseIsPressed == true) {
+      pointsData.push({empty: "empty"});
   }
+ 
+  
+  for (var i = 0; i < points.length; i++) {
+    if(i > 0 && points[i] != {empty: "empty"} && points[i-1] != {empty: "empty"}) {
+      var point = points[i];
+      var previous = points[i-1];
+      line(previous.x, previous.y, point.x, point.y);
+    }
+  }
+  
+  mouseWasPressed = mouseIsPressed;
+  
 }
 
 // update points drawn to firebase
