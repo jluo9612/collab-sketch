@@ -2,21 +2,57 @@
 <html>
   <head>
     <title>CollabSketch!</title>
+    <h1>CollabSketch - Draw with friends!</h1>
+    <link href="styles.css" rel="stylesheet">
+    <link href="dsb.css" rel="stylesheet">
+    <link rel='stylesheet' href='spectrum.css'>
   </head>
+  
+  
   <body>
-    <div id="controls" class="wrapper">
-     <button id="saveDrawing" class="button">Save to Computer</button>
-     <button id="clearDrawing" class="button">DELETE DRAWING</button>
-     <button id="expandCanvas" class="button">Enlarge Canvas</button>
-    </div>
     
-    <div class="wrapper">
-      <button class="button">test button</button>
-    </div>
+    <!--jQuery-->
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"
+      integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="   
+      crossorigin="anonymous">
+    </script>
     
-    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <!--p5-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.23/p5.min.js"></script>
-    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="p5.dom.js"></script>
+    
+    <!--spectrum-->
+    <script src='https://rawgit.com/bgrins/spectrum/master/spectrum.js'></script>
+    
+    <!--firebase-->
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    
+    <!--controls-->
+    <div id="controls" class="wrapper">
+      <div>
+       <button id="saveDrawing" class="saveButton">Save to Computer</button>
+       <button id="clearDrawing" class="clearButton">DELETE DRAWING</button>
+       <button id="expandCanvas" class="button">Enlarge Canvas</button>
+      </div>
+      <br>
+      <!--colorpicker-->
+        Color:
+        <input id='colorpicker' class="toolbarElement"/>
+        <script>
+          $("#colorpicker").spectrum({
+              color: "#f00"
+          });
+        </script>
+        
+      <!--slider-->
+        Paintbrush Size:
+        <span id="slider" class="toolbarElement"></span>
+    </div>
+    
+    <hr/>
+    <div id="drawingContainer"></div>
+    <hr/>
+
     <script src="main.js"></script>
   </body>
 </html>

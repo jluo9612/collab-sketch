@@ -9,7 +9,7 @@
 /*global canvas*/
 /*global mouseIsPressed*/
 
-
+// var r_g_b;
 var mouseWasPressed;
 
  // Initialize Firebase
@@ -28,11 +28,22 @@ var mouseWasPressed;
   var points = [];
 
 function setup() {
-    var canvas = createCanvas(1000,1000);
+    var canvas = createCanvas(800,1000);
+    canvas.parent('drawingContainer');
+    
     background(255);
     fill(0);
+    strokeWeight(1);
     
-// gets data from Firebase and stores it into points variable in app
+    $("#showPalette").spectrum({
+        showPalette: true,
+        palette: []
+    });
+    
+    slider = createSlider();
+    slider.parent("slider");
+    
+// gets data from Firebase and appends it into points variable
     pointsData.on("child_added", function (addPointToPointsArray) {
      points.push(addPointToPointsArray.val());
     });
@@ -52,6 +63,7 @@ function setup() {
     canvas.touchMoved(drawPointIfTouchPressed);
     canvas.mousePressed(drawPointIfMousePressed);
     canvas.mouseMoved(drawPointIfMousePressed);
+    
 }
 
 /* The point function created as an argument does not have a name, and is not stored anywhere. 
@@ -64,12 +76,11 @@ function draw() {
   background(255);
   
   
-  // draw ellipses at points on canvas
+  // draw lines at points on canvas
   if(mouseWasPressed == false && mouseIsPressed == true) {
       pointsData.push({empty: "empty"});
   }
  
-  
   for (var i = 0; i < points.length; i++) {
     if(i > 0 && points[i] != {empty: "empty"} && points[i-1] != {empty: "empty"}) {
       var point = points[i];
@@ -78,7 +89,7 @@ function draw() {
     }
   }
   
-  mouseWasPressed = mouseIsPressed;
+mouseWasPressed = mouseIsPressed;
   
 }
 

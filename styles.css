@@ -4,6 +4,9 @@
 }
 
 .button {
-    position: absolute;
     top: 10%;
 }
+
+#picker { width: 200px; height: 200px; position: absolute}
+
+#slide { width: 30px; height: 200px; position:absolute;}
