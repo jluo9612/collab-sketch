@@ -9,7 +9,6 @@
 /*global canvas*/
 /*global mouseIsPressed*/
 
-// var r_g_b;
 var mouseWasPressed;
 
  // Initialize Firebase
@@ -28,6 +27,16 @@ var mouseWasPressed;
   var points = [];
 
 function setup() {
+    $(document).ready(function(){
+    	$(".yourSlider").nerveSlider({
+    		sliderWidth: "800px",
+    		sliderHeight: "400px",
+    		sliderResizable: true,
+    		sliderAutoPlay: true,
+    		slideTransition: "slide"
+    	});
+    });
+    
     var canvas = createCanvas(800,1000);
     canvas.parent('drawingContainer');
     
@@ -75,9 +84,9 @@ It would be equivalent if we had declared a function, perhaps named addPointToPo
 function draw() {
   background(255);
   
-  
   // draw lines at points on canvas
   if(mouseWasPressed == false && mouseIsPressed == true) {
+      // var point = slider.value();
       pointsData.push({empty: "empty"});
   }
  
@@ -85,6 +94,7 @@ function draw() {
     if(i > 0 && points[i] != {empty: "empty"} && points[i-1] != {empty: "empty"}) {
       var point = points[i];
       var previous = points[i-1];
+      strokeWeight(point.width);
       line(previous.x, previous.y, point.x, point.y);
     }
   }
@@ -93,9 +103,8 @@ mouseWasPressed = mouseIsPressed;
   
 }
 
-// update points drawn to firebase
 function drawPoint() {
-  pointsData.push({x: mouseX, y: mouseY});
+  pointsData.push({x: mouseX, y: mouseY, width: slider.value()});
 }
 
 function drawTouch() {
