@@ -27,17 +27,7 @@ var mouseWasPressed;
   var points = [];
 
 function setup() {
-    $(document).ready(function(){
-    	$(".yourSlider").nerveSlider({
-    		sliderWidth: "800px",
-    		sliderHeight: "400px",
-    		sliderResizable: true,
-    		sliderAutoPlay: true,
-    		slideTransition: "slide"
-    	});
-    });
-    
-    var canvas = createCanvas(800,1000);
+    var canvas = createCanvas(1000,1000);
     canvas.parent('drawingContainer');
     
     background(255);

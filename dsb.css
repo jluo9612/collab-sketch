@@ -1,6 +1,7 @@
 
 html {
-    background-image: url("bkgdimg/391920.jpg");
+    text-align: center;
+    background-image: url("https://preview.c9users.io/jl9612/collab_sketch/bkgdimg/391920.jpg?livereload=1466647812778");
     background-size: cover;
     background-repeat: no-repeat;
     background-color: #fefefe;
@@ -10,14 +11,16 @@ html {
 }
 
 body {
-    margin: 0 auto;
-    padding: 2em 2em 4em;
-    max-width: 800px;
+    font-family: quicksand;
+    box-shadow: 10px 0px 100px #888888;
+    margin-left: 100px;
+    margin-right: 100px;
+    padding: 20px 200px 200px 200px;
+    max-width: 1500px;
     font-size: 16px;
     line-height: 1.5em;
     color: #545454;
     background-color: #ffffff;
-    box-shadow: 10px 0px 100px #888888;
 }
 
 
@@ -27,7 +30,16 @@ hr {
     background: #999;
 }
 
-h1, h2, h3, h4, h5, h6 {
+@font-face { 
+        font-family: "quicksand";
+        src: url("Quicksand-Regular.otf");
+}
+
+h1, h2{
+    font-family: quicksand;
+}
+
+h3, h4, h5, h6 {
     color: #222;
     font-weight: 600;
     line-height: 1.3em

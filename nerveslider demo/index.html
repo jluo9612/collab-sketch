@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Nerve Slider Demo</title>
+	<title>CollabSketch!</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1, initial-scale=1">
-	<link rel="stylesheet" href="nerveSlider.min.css">
+	<br>
+	<h1>CollabSketch</h1>
+	<h2>Draw with friends!</h2>
+	<link href="nerveSlider.min.css" rel="stylesheet">
+    <link href="../styles.css" rel="stylesheet">
+    <link href="../dsb.css" rel="stylesheet">
+    <!--<link rel='stylesheet' href='spectrum.css'>-->
 	<style>
-	html, body {
-		margin:0;
-		padding:0;
-		}
-		
 	.section {
-		padding:100px 0;
+		padding:10px;
 		text-align:center;
 		margin:0 auto;
-		max-width:1200px;
+		max-width:700px;
 		}
 	</style>
 </head>
+
 <body>
 	<script src="jquery-1.10.2.min.js"></script>
 	<script src="jquery-ui-1.10.2.min.js"></script>
@@ -27,18 +29,62 @@
 	$(document).ready(function(){
 		$(".iAmTest").nerveSlider({
 			slideTransitionSpeed: 1000,
-			slideTransitionEasing: "easeOutExpo"
+			slideTransitionEasing: "easeOutExpo",
+			sliderWidth: "100%",
+			sliderHeight: "500px"
 			});
 	});
 	</script>
 	<div class="section">
 		<div class="iAmTest">
-			<img src="http://code.builtbyevolve.com/nerveSlider/example-images/canyon.jpg" data-slidecaption="<h1>This is a caption</h1>You can put any text in a slide caption!" alt="">
-			<a href="http://www.builtbyevolve.com/" target="_blank"><img src="http://code.builtbyevolve.com/nerveSlider/example-images/dusk.jpg" data-slidecaption="You can put links on slides, too." alt=""></a>
-			<img src="http://code.builtbyevolve.com/nerveSlider/example-images/winter.jpg" alt="">
-			<img src="http://code.builtbyevolve.com/nerveSlider/example-images/tree.jpg" alt="">
+			<img src="../bkgdimg/1.jpg" data-slidecaption="Final Fantasy Tactics" alt="">
+			<img src="../bkgdimg/2.jpg" data-slidecaption="Chocobo from Final Fantasy" alt="">
+			<img src="../bkgdimg/3.jpg" data-slidecaption="Final Fantasy VII" alt="">
+			<img src="../bkgdimg/4.jpg" data-slidecaption="Final Fantasy VIX" alt="">
+			<img src="../bkgdimg/5.jpeg" data-slidecaption="Final Fantasy VI" alt="">
+			<img src="../bkgdimg/6.jpg" data-slidecaption="Final Fantasy~The Four Heroes of Light" alt="">
+			<img src="../bkgdimg/7.jpeg" data-slidecaption="White Mage Concept" alt="">
 		</div>
 	</div>
+	<hr>
+	<br>
+    
+    <!--p5-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.23/p5.min.js"></script>
+    <script src="../p5.dom.js"></script>
+    
+    <!--spectrum-->
+    <script src='https://rawgit.com/bgrins/spectrum/master/spectrum.js'></script>
+    
+    <!--firebase-->
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    
+    <!--controls-->
+    <div id="controls" class="wrapper">
+      <div>
+       <button id="saveDrawing" class="saveButton">Save to Computer</button>
+       <button id="clearDrawing" class="clearButton">DELETE DRAWING</button>
+       <button id="expandCanvas" class="button">Enlarge Canvas</button>
+      </div>
+      <br>
+      <!--colorpicker-->
+        <!--<input id='colorpicker' class="toolbarElement"/>-->
+        <!--<script>-->
+        <!--  $("#colorpicker").spectrum({-->
+        <!--      color: "#f00"-->
+        <!--  });-->
+        <!--</script>-->
+        
+      <!--slider-->
+        Paintbrush Size:
+        <span id="slider" class="toolbarElement"></span>
+    </div>
+    
+    <hr/>
+    <div id="drawingContainer" class="canvas"></div>
+
+    <script src="../main.js"></script>
+	
 
 </body>
 </html>
