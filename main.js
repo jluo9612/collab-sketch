@@ -34,11 +34,6 @@ function setup() {
     fill(0);
     strokeWeight(1);
     
-    $("#showPalette").spectrum({
-        showPalette: true,
-        palette: []
-    });
-    
     slider = createSlider();
     slider.parent("slider");
     

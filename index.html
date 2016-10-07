@@ -1,25 +1,53 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>CollabSketch!</title>
-    <h1>CollabSketch - Draw with friends!</h1>
+<head>
+	<title>CollabSketch!</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1, initial-scale=1">
+	<br>
+	<h1>CollabSketch</h1>
+	<h2>Draw with friends!</h2>
+	<link href="nerveSlider.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
     <link href="dsb.css" rel="stylesheet">
-    <link rel='stylesheet' href='spectrum.css'>
-    <link rel="stylesheet" href="//www.builtbyevolve.com/files/nerveSlider/nerveSlider.min.css">
-  </head>
-  
-  <body>
     
-    <!--jQuery-->
-    <script src="https://code.jquery.com/jquery-3.0.0.min.js"
-      integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="   
-      crossorigin="anonymous">
-    </script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-    
-    <!--Nerve slider-->
-    <script src="//www.builtbyevolve.com/files/nerveSlider/jquery.nerveSlider.min.js"></script>
+	<style>
+	.section {
+		padding:10px;
+		text-align:center;
+		margin:0 auto;
+		max-width:800px;
+		}
+	</style>
+</head>
+
+<body>
+	<script src="jquery-1.10.2.min.js"></script>
+	<script src="jquery-ui-1.10.2.min.js"></script>
+	<script src="jquery.nerveSlider.min.js"></script>
+	<script>
+	$(document).ready(function(){
+		$(".iAmTest").nerveSlider({
+			slideTransitionSpeed: 1000,
+			slideTransitionEasing: "easeOutExpo",
+			sliderWidth: "100%",
+			sliderHeight: "500px"
+			});
+	});
+	</script>
+	<div class="section">
+		<div class="iAmTest">
+			<img src="bkgdimg/1.jpg" data-slidecaption="Final Fantasy Tactics" alt="">
+			<img src="bkgdimg/2.jpg" data-slidecaption="Chocobo from Final Fantasy" alt="">
+			<img src="bkgdimg/3.jpg" data-slidecaption="Final Fantasy VII" alt="">
+			<img src="bkgdimg/4.jpg" data-slidecaption="Final Fantasy VIX" alt="">
+			<img src="bkgdimg/5.jpeg" data-slidecaption="Final Fantasy VI" alt="">
+			<img src="bkgdimg/6.jpg" data-slidecaption="Final Fantasy~The Four Heroes of Light" alt="">
+			<img src="bkgdimg/7.jpeg" data-slidecaption="White Mage Concept" alt="">
+		</div>
+	</div>
+	<hr>
+	<br>
     
     <!--p5-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.23/p5.min.js"></script>
@@ -39,24 +67,22 @@
        <button id="expandCanvas" class="button">Enlarge Canvas</button>
       </div>
       <br>
-      <!--colorpicker-->
-        Color:
-        <input id='colorpicker' class="toolbarElement"/>
-        <script>
-          $("#colorpicker").spectrum({
-              color: "#f00"
-          });
-        </script>
-        
+      
+      
+      <!--Colorpicker-->
+      <input type="color" id="color"/>
+      <button id="btn">COLORPICKER</button>
+      
       <!--slider-->
         Paintbrush Size:
         <span id="slider" class="toolbarElement"></span>
     </div>
     
     <hr/>
-    <div id="drawingContainer"></div>
-    <hr/>
+    <div id="drawingContainer" class="canvas"></div>
 
     <script src="main.js"></script>
-  </body>
+	
+
+</body>
 </html>
