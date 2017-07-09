@@ -1,14 +1,3 @@
-/*global firebase*/
-/*global createCanvas*/
-/*global background*/
-/*global fill*/
-/*global pointsData*/
-/*global ellipse*/
-/*global mouseX*/
-/*global mouseY*/
-/*global canvas*/
-/*global mouseIsPressed*/
-
 var mouseWasPressed;
 
  // Initialize Firebase
@@ -34,57 +23,60 @@ function setup() {
     fill(0);
     strokeWeight(1);
     
-    slider = createSlider();
+    slider = createSlider(2, 255, 0);
     slider.parent("slider");
     
 // gets data from Firebase and appends it into points variable
-    pointsData.on("child_added", function (addPointToPointsArray) {
-     points.push(addPointToPointsArray.val());
+    pointsData.on("child_added", function (point) {
+     points.push(point.val());
     });
     
-    function drawPointIfMousePressed() {
-     if (mouseIsPressed) {
-       drawPoint();
-     }
-    }
+    // function drawPointIfMousePressed() {
+    // if (mouseIsPressed) {
+    //   drawPoint();
+    // }
+    // }
     
-    function drawPointIfTouchPressed() {
-     if (touchIsDown) {
-        drawTouch();
+    // function drawPointIfTouchPressed() {
+    // if (touchIsDown) {
+    //     drawTouch();
+    //   }
+    // }
+    
+  //  canvas.touchStarted(drawTouch);
+  //  canvas.touchMoved(drawTouch);
+    canvas.mousePressed(drawPoint);
+    
+    canvas.mouseMoved(function () {
+      if (mouseIsPressed) {
+        drawPoint();
       }
-    }
-    canvas.touchStarted(drawPointIfTouchPressed);
-    canvas.touchMoved(drawPointIfTouchPressed);
-    canvas.mousePressed(drawPointIfMousePressed);
-    canvas.mouseMoved(drawPointIfMousePressed);
+    });
     
 }
-
-/* The point function created as an argument does not have a name, and is not stored anywhere. 
-It exists only to be passed as an argument to .on(). 
-This is called an anonymous function.
-It would be equivalent if we had declared a function, perhaps named addPointToPointsArray, and then passed that in as our argument to .on(). */
 
 // looping through the points variable which stores 
 function draw() {
   background(255);
   
-  // draw lines at points on canvas
-  if(mouseWasPressed == false && mouseIsPressed == true) {
-      // var point = slider.value();
-      pointsData.push({empty: "empty"});
-  }
+  // // draw lines at points on canvas
+  // if(mouseWasPressed == false && mouseIsPressed == true) {
+  //     pointsData.push({empty: "empty"});
+  // }
  
   for (var i = 0; i < points.length; i++) {
     if(i > 0 && points[i] != {empty: "empty"} && points[i-1] != {empty: "empty"}) {
-      var point = points[i];
-      var previous = points[i-1];
-      strokeWeight(point.width);
-      line(previous.x, previous.y, point.x, point.y);
+      // var point = points[i];
+      // var previous = points[i-1];
+      // strokeWeight(point.width);
+      // line(previous.x, previous.y, point.x, point.y);
+      
+       var point = points[i];
+       ellipse(point.x, point.y, 5, 5);
     }
   }
   
-mouseWasPressed = mouseIsPressed;
+  // mouseWasPressed = mouseIsPressed;
   
 }
 
@@ -93,11 +85,11 @@ function drawPoint() {
 }
 
 function drawTouch() {
-  pointsData.push({x: touchX, y: touchY});
+  pointsData.push({x: touchX, y: touchY, width: slider.value()});
 }
 
 function saveDrawing() {
-  saveCanvas("cscanvas", "png");
+  saveCanvas("Painter Orpheus <3", "png");
   console.log("saving drawing");
 }
 
@@ -113,7 +105,7 @@ function expandCanvas() {
 }
 
 function sure() {
-  if(confirm("Are you sure that you want to delete this drawing?") == true) {
+  if(confirm("Are you sure that you want to delete this drawing? (Please don't)") == true) {
     clearDrawing();
   }
   else{

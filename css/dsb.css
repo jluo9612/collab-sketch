@@ -1,9 +1,6 @@
 
 html {
     text-align: center;
-    background-image: url("https://preview.c9users.io/jl9612/collab_sketch/bkgdimg/391920.jpg?livereload=1466647812778");
-    background-size: cover;
-    background-repeat: no-repeat;
     background-color: #fefefe;
     background-attachment: fixed;
     -webkit-font-smoothing: antialiased;
@@ -13,8 +10,7 @@ html {
 body {
     font-family: quicksand;
     box-shadow: 10px 0px 100px #888888;
-    margin-left: 100px;
-    margin-right: 100px;
+    margin: 0 auto;
     padding: 20px 200px 200px 200px;
     max-width: 1500px;
     font-size: 16px;
@@ -23,11 +19,20 @@ body {
     background-color: #ffffff;
 }
 
+.shadow {
+    padding: 2%;
+    margin: 1%;
+    box-shadow: 0 0 20px pink;
+    border-style: dashed;
+    border-color: red;
+    color: brown;
+}
+
 
 hr {
+    height: 12px;
     border: 0;
-    border-bottom: 1px dashed #ccc;
-    background: #999;
+    box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
 }
 
 @font-face { 
@@ -73,7 +78,7 @@ button {
     padding-right: 1em;
     padding-left: 1em;
     font-family: inherit;
-    text-transform:uppercase;
+    text-transform: uppercase;
     
     -webkit-transition-duration: 0.2s; /* Safari */
     transition-duration: 0.2s;
